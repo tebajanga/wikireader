@@ -33,7 +33,14 @@ let replWiki = function() {
                     console.log(`Type "HELP", for help.`)
                 }
             } else if (command === 'ABOUT') {
-                // Get article metadata
+                if (title != '') {
+                    title = escape(title.replace(/ /g,"_"));
+                    console.log(`Getting article metadata...`);
+                    wiki.fetchArticleMetadata(title);
+                } else {
+                    console.log(`To view article metadata you need to pass article title as argument.`);
+                    console.log(`Type "HELP", for help.`)
+                }
             } else if (command === 'RANDOM') {
                 console.log(`Reading article...`);
                 wiki.fetchArticle('', true);

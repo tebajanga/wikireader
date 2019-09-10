@@ -42,6 +42,54 @@ module.exports = {
                 }
             });
     },
+
+    // Getting article metadata
+    fetchArticleMetadata: function(title) {
+        let URL = '';
+
+        // Old metadata
+        URL = this.URL + '?action=query&prop=revisions&rvlimit=1&rvprop=timestamp|user|size&rvdir=newer&format=json&titles=' + title;
+        fetch(URL)
+            .then(response => response.json())
+            .then(data => {
+                if (data.query.pages) {
+                    let content = data.query.pages[Object.keys(data.query.pages)[0]];
+                    let meta = content.revisions[0];
+                    let creationDate = new Date(meta.timestamp).toLocaleString();
+                    let firstVersionAuthor = meta.user;
+                    let firstVersionSize = meta.size;
+
+                    // Fetching new metadata
+                    URL = this.URL + '?action=query&prop=revisions&rvlimit=1&rvprop=timestamp|user|size&rvdir=older&format=json&titles=' + title;
+                    fetch(URL)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.query.pages) {
+                                let content = data.query.pages[Object.keys(data.query.pages)[0]];
+                                let meta = content.revisions[0];
+                                let modifiedDate = new Date(meta.timestamp).toLocaleString();;
+                                let lastVersionAuthor = meta.user;
+                                let lastVersionSize = meta.size;
+
+                                // Displaying metadata
+                                console.log(`Article Metadata`);
+                                console.log(`----------------`);
+                                console.log(`* Creation date : ${creationDate}`);
+                                console.log(`* Author of the first version : ${firstVersionAuthor}`);
+                                console.log(`* Size of the first version : ${firstVersionSize} Bytes.`);
+                                console.log(`\n`);
+                                console.log(`* Creation date : ${modifiedDate}`);
+                                console.log(`* Author of the first version : ${lastVersionAuthor}`);
+                                console.log(`* Size of the first version : ${lastVersionSize} bytes.`);
+                            } else {
+                                console.log(`Could not get article metadata.`);
+                            }
+                        });
+                } else {
+                    console.log(`Could not get article metadata.`);
+                }
+            });
+    },
     
     // List of commands
     help: function() {
