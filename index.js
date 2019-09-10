@@ -43,9 +43,9 @@ let replWiki = function() {
                 rline.close();
                 return;
             } else if (command === '') {
-                // To do.
+                wiki.printParagraph();
             } else if (command === 'Q') {
-                // To do.
+                wiki.resetParagraphs();
             } else {
                 console.log(`Unknown command: "${command}"`);
                 console.log(`Type "HELP", to see the list of available commands.`);
