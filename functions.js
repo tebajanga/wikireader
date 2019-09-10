@@ -1,4 +1,7 @@
 module.exports = {
+    URL: '',
+    langFound: false,
+    
     // List of commands
     help: function() {
         console.log(`List of available commands.\n`);

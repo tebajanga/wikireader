@@ -1,4 +1,5 @@
 const readline = require('readline');
+const fetch = require('node-fetch');
 const wiki = require('./functions');
 
 const args = process.argv.slice(2);
@@ -61,7 +62,21 @@ async function run() {
 if (args[0]) {
     let lang = args[0];
     // Validating the language
-    run();
+    fetch('https://en.wikipedia.org/w/api.php?action=languagesearch&format=json&search='+lang)
+        .then(response => response.json())
+        .then(data => {
+            if (data.languagesearch) {
+                if(lang in data.languagesearch) {
+                    wiki.URL = 'https://'+lang+'.wikipedia.org/w/api.php';
+                    wiki.langFound = true;
+                }
+            }
+            if (wiki.langFound) {
+                run();
+            } else {
+                console.log('Language code "'+lang+'" does not exist. \nTry to run again with a different language.');
+            }
+        })
 } else {
     console.log('You must specify language code to continue. \nFor example: wikireader en');
 }

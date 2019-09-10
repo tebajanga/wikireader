@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/tebajanga/wikireader/issues"
   },
-  "homepage": "https://github.com/tebajanga/wikireader#readme"
+  "homepage": "https://github.com/tebajanga/wikireader#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
 }
