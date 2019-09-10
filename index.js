@@ -1,4 +1,5 @@
 const readline = require('readline');
+const wiki = require('./functions');
 
 const args = process.argv.slice(2);
 
@@ -28,7 +29,7 @@ let replWiki = function() {
             } else if (command === 'RANDOM') {
                 // Reading random article
             } else if (command === 'HELP') {
-                // Show help
+                wiki.help();
             } else if (command === 'QUIT') {
                 console.log(`Thank you for using wikireader.`);
                 rline.close();
@@ -60,6 +61,7 @@ async function run() {
 if (args[0]) {
     let lang = args[0];
     // Validating the language
+    run();
 } else {
     console.log('You must specify language code to continue. \nFor example: wikireader en');
 }
