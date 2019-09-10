@@ -1,0 +1,24 @@
+{
+  "name": "wikireader",
+  "version": "1.0.0",
+  "description": "Reading Wikipedia from the command line",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tebajanga/wikireader.git"
+  },
+  "keywords": [
+    "wikireader",
+    "wikipedia",
+    "cli"
+  ],
+  "author": "Timothy Anthony",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tebajanga/wikireader/issues"
+  },
+  "homepage": "https://github.com/tebajanga/wikireader#readme"
+}
