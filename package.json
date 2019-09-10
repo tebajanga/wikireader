@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/tebajanga/wikireader#readme",
   "dependencies": {
+    "html-to-text": "^5.1.1",
     "node-fetch": "^2.6.0"
   }
 }

@@ -24,7 +24,14 @@ let replWiki = function() {
 
             // Processing commands
             if (command === 'READ') {
-                // Reading article
+                if (title != '') {
+                    title = escape(title.replace(/ /g,"_"));
+                    console.log(`Reading article...`);
+                    wiki.fetchArticle(title);
+                } else {
+                    console.log(`To read article you need to pass article title as argument.`);
+                    console.log(`Type "HELP", for help.`)
+                }
             } else if (command === 'ABOUT') {
                 // Get article metadata
             } else if (command === 'RANDOM') {
