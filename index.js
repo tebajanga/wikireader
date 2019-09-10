@@ -35,7 +35,8 @@ let replWiki = function() {
             } else if (command === 'ABOUT') {
                 // Get article metadata
             } else if (command === 'RANDOM') {
-                // Reading random article
+                console.log(`Reading article...`);
+                wiki.fetchArticle('', true);
             } else if (command === 'HELP') {
                 wiki.help();
             } else if (command === 'QUIT') {
